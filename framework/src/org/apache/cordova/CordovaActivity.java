@@ -138,7 +138,7 @@ public class CordovaActivity extends Activity {
         if (!appView.isInitialized()) {
             appView.init(cordovaInterface, pluginEntries, preferences);
         }
-        cordovaInterface.setPluginManager(appView.getPluginManager());
+        cordovaInterface.onCordovaInit(appView.getPluginManager());
 
         // Wire the hardware volume controls to control media if desired.
         String volumePref = preferences.getString("DefaultVolumeStream", "");
@@ -439,8 +439,8 @@ public class CordovaActivity extends Activity {
 
     protected void onSaveInstanceState(Bundle outState)
     {
-        super.onSaveInstanceState(outState);
         cordovaInterface.onSaveInstanceState(outState);
+        super.onSaveInstanceState(outState);
     }
 
     /**
